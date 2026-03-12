@@ -1,3 +1,5 @@
+(function(){
+
 const canvas = document.getElementById("threeCanvas");
 
 const scene = new THREE.Scene();
@@ -527,4 +529,4 @@ camera.updateProjectionMatrix();
 renderer.setSize(window.innerWidth,window.innerHeight);
 
 });
-
+})();
