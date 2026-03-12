@@ -45,7 +45,7 @@ const storySteps = [
     ]
   },
   {
-    text: "Let me ask you something… Do you like me?'",
+  text: "Let me ask you something… Do you like me?",
     options: [
       { text: "Of course! 😄", reply: "Haha, you got no option other than yes 😎😏", next: 7 },
       { text: "Yes! ❤️", reply: "Haha, you got no option other than yes 😎😏", next: 7 },
@@ -86,25 +86,47 @@ function render() {
     btn.innerText = option.text;
 
     btn.onclick = () => {
-      // hide all options
-      choices.innerHTML = "";
 
-      // fade out question, then show reply
-      fadeOut(question, () => {
-        question.innerText = option.reply;
-        fadeIn(question);
+  console.log("Button clicked:", option.text);
 
-        // wait 3 seconds for the reply
-        setTimeout(() => {
-          if (option.next === null) {
-            document.getElementById("story").style.display = "none";
-            window.startParticles?.();
-          } else {
-            step = option.next;
-            render();
-          }
-        }, 3000);
-      });
+  // hide all options
+  choices.innerHTML = "";
+
+  fadeOut(question, () => {
+
+    console.log("Showing reply:", option.reply);
+
+    question.innerText = option.reply;
+    fadeIn(question);
+
+    setTimeout(() => {
+
+      console.log("Next step:", option.next);
+
+      if (option.next == null) {
+
+        console.log("END OF STORY - starting particles");
+
+        document.getElementById("story").style.display = "none";
+
+        if (window.startParticles) {
+          console.log("startParticles exists");
+          window.startParticles();
+        } else {
+          console.log("ERROR: startParticles NOT found");
+        }
+
+      } else {
+
+        step = option.next;
+        render();
+
+      }
+
+    }, 3000);
+
+  });
+
     };
 
     choices.appendChild(btn);

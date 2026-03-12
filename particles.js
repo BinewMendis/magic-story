@@ -1,5 +1,3 @@
-import * as THREE from "three";
-
 const canvas = document.getElementById("threeCanvas");
 
 const scene = new THREE.Scene();
@@ -46,6 +44,8 @@ mouse.x=(e.clientX/window.innerWidth-0.5)*20;
 mouse.y=(e.clientY/window.innerHeight-0.5)*20;
 
 });
+
+console.log("particles.js loaded");
 
 /* ---------------- GALAXY ---------------- */
 
@@ -527,3 +527,4 @@ camera.updateProjectionMatrix();
 renderer.setSize(window.innerWidth,window.innerHeight);
 
 });
+
