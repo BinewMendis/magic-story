@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Story</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+  #story {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    z-index: 5;
+  }
+  #question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  #choices button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background: #ff69b4;
+    color: white;
+    transition: transform 0.2s;
+  }
+  #choices button:hover { transform: scale(1.1); }
+  canvas { display: block; position: fixed; top:0; left:0; z-index:-1; }
+</style>
+</head>
+<body>
+
+  <body>
+
+<body>
+
+<!-- ROTATION LOCK SCREEN -->
+<div id="rotateLock">
+  <div class="lockContent">
+    <div class="phone"></div>
+    <p>Please rotate your phone<br>to landscape mode to start</p>
+  </div>
+</div>
+
+<div id="appContent">
+
+  <div id="story">
+    <h1 id="question"></h1>
+    <div id="choices"></div>
+  </div>
+
+  <canvas id="threeCanvas"></canvas>
+
+</div>
+
+<!-- Story container -->
+<div id="story">
+  <h1 id="question"></h1>
+  <div id="choices"></div>
+</div>
+
+<canvas id="threeCanvas"></canvas>
+
+<div id="story">
+  <h1 id="question"></h1>
+  <div id="choices"></div>
+</div>
+
+<canvas id="threeCanvas"></canvas>
+
+<script src="space.js"></script>
+<script type="module" src="particles.js"></script>
+<script src="story.js"></script>
+
+<script>
+
+function checkOrientation(){
+
+const lock = document.getElementById("rotateLock");
+const app = document.getElementById("appContent");
+
+if(window.innerHeight > window.innerWidth){
+
+// PORTRAIT → LOCK
+lock.style.display="flex";
+app.style.display="none";
+
+}else{
+
+// LANDSCAPE → UNLOCK
+lock.style.display="none";
+app.style.display="block";
+
+}
+
+}
+
+// check on load
+checkOrientation();
+
+// check when rotating
+window.addEventListener("resize",checkOrientation);
+window.addEventListener("orientationchange",checkOrientation);
+
+</script>
+
+</body>
+</html>
